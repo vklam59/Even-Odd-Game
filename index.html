@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Even or Odd Game</title>
+</head>
+
+<p id="demo">
+<script>
+//The player will enter their name first and the computer will use the player name in all messages.
+let playerName = prompt('Welcome to Even or Odd Game. Please enter your name to get started:');
+
+
+//On the count of three, the computer will randomize two numbers from 1 to 4 inclusive.
+let num1 = Math.floor(Math.random() * 5) +1;
+document.getElementById("demo").innerHTML = num1;
+console.log(num1);
+
+let num2 = Math.floor(Math.random() * 5) +1;
+document.getElementById("demo").innerHTML = num2;
+console.log(num2);
+
+//The computer adds the two numbers together.
+sum = num1 + num2
+//Computer determines even or odd
+if (sum % 2 == 0) { 
+    computerChoice = 'even'; 
+} else { 
+    computerChoice = 'odd'; 
+}
+
+// Declare counts of wins and losses outside of while loop
+let winCount = 0;
+let loseCount = 0;    
+
+// While loop for the game if player chooses to play
+let play = true
+while (play == true) {
+//Before each play, the player will call whether the total number count will be an even number or an odd number.
+let playerChoice = prompt(`Make a guess ${playerName}! Is the sum even or odd? (Type even/odd)`);
+    switch (computerChoice){      //Decision Tree
+        case 'even':
+            result = (playerChoice.toLowerCase() == 'even') ? 'win' : 
+                (playerChoice.toLowerCase() == 'odd') ? 'lose':'invalid';
+            break;
+        case 'odd':
+            result = (playerChoice.toLowerCase() == 'even') ? 'lose': 
+                (playerChoice.toLowerCase() == 'odd') ? 'win':'invalid';
+            break;
+        default:
+            result = alert('Error occurs');
+        };
+    
+        
+    if (result == 'win'){
+        winCount ++;
+    } else if (result == 'lose'){
+        loseCount ++;
+    } else {
+        continue
+    };
+
+//Computer displayed game results and win/loss record:
+    let record = prompt (`${playerName}, you chose ${playerChoice}, the sum was ${sum}, which is an ${computerChoice} number, you ${result}! 
+    \nThat's ${winCount} wins and ${loseCount} losses! Would you like to play again? y/n`);
+
+    if (record.toLowerCase() == 'y'){
+        play = true;
+    } else if (record.toLowerCase() == 'n') {
+        play = false;
+    };
+};
+alert (`Thanks for playing ${playerName}. Goodbye!`)
+
+</script>
+</p>
+</html>
+
